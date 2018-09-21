@@ -27,7 +27,22 @@ export default class PledgePage extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Hello</Text>
-        <Swiper>
+        <Swiper
+          dot={
+            <View
+              style={{
+                display: 'none'
+              }}
+            />
+          }
+          activeDot={
+            <View
+              style={{
+                display: 'none'
+              }}
+            />
+          }
+        >
           {this.state.items.map((item, key) => {
             return (
               <View key={key} style={item.css}>

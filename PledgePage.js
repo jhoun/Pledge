@@ -7,14 +7,19 @@ export default class PledgePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      items: []
     };
   }
   componentDidMount() {
     this.setState({
-      data: [
-        { sentence: 'Stop using plastic straws', css: styles.slide1 },
-        { sentence: 'Hello', css: styles.slide1 }
+      items: [
+        { title: 'Stop using plastic straws', css: styles.slide1 },
+        {
+          title:
+            'At home and in restuarants, I will switch from bottled water to tap water',
+          css: styles.slide2
+        },
+        { title: 'I will no longer buy bottled water', css: styles.slide3 }
       ]
     });
   }
@@ -22,15 +27,14 @@ export default class PledgePage extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Hello</Text>
-        <Swiper style={styles.wrapper}>
-          {this.state.data.map((pledge, key) => {
+        <Swiper>
+          {this.state.items.map((item, key) => {
             return (
-              <View key={key} style={pledge.css}>
-                <Text style={styles.text}>{pledge.sentence}</Text>
+              <View key={key} style={item.css}>
+                <Text style={styles.text}>{item.title}</Text>
               </View>
             );
           })}
-          ;
         </Swiper>
         <View style={styles.button}>
           <Button title="click me" />
@@ -52,13 +56,13 @@ const styles = StyleSheet.create({
   },
   wrapper: {},
   slide1: {
-    height: 'auto',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red'
   },
   slide2: {
-    height: 'auto',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#97CAE5'
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 100,
+    fontSize: 60,
     fontWeight: 'bold'
   },
   button: {

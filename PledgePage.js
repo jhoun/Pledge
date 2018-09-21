@@ -2,21 +2,35 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import data from './data/pledge-data';
 
 export default class PledgePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+  componentDidMount() {
+    this.setState({
+      data: [
+        { sentence: 'Stop using plastic straws', css: styles.slide1 },
+        { sentence: 'Hello', css: styles.slide1 }
+      ]
+    });
+  }
   render() {
-    console.log('data', data);
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Hello</Text>
         <Swiper style={styles.wrapper}>
-          <View style={styles.slide1}>
-            <Text style={styles.text}>Hello Swiper</Text>
-          </View>
-          <View style={styles.slide2}>
-            <Text style={styles.text}>Beautiful</Text>
-          </View>
+          {this.state.data.map((pledge, key) => {
+            return (
+              <View key={key} style={pledge.css}>
+                <Text style={styles.text}>{pledge.sentence}</Text>
+              </View>
+            );
+          })}
+          ;
         </Swiper>
         <View style={styles.button}>
           <Button title="click me" />
